@@ -180,6 +180,26 @@ The generated distributions are saved in `dist/`. Validate them with Twine:
 pipenv run twine check dist/*
 ```
 
+## Verifying a Published Release
+
+After a new version is published to PyPI, check the available versions:
+
+```bash
+python3 -m pip index versions pyfakefacts
+```
+
+Install or upgrade to the latest published version:
+
+```bash
+python3 -m pip install --upgrade pyfakefacts
+```
+
+Confirm the installed version:
+
+```bash
+python3 -m pip show pyfakefacts
+```
+
 ## Troubleshooting
 
 ### Python can't find `pyfakefacts`
