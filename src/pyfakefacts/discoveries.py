@@ -92,4 +92,4 @@ def generate_discovery(field, absurdity):
     subject = random.choice(DISCOVERIES[field]["subjects"])
     behavior = random.choice(DISCOVERIES[field][level])
 
-    return f"Fictional discovery: Scientists discovered that {subject} {behavior}."
+    return f"Scientists discovered that {subject} {behavior}."
