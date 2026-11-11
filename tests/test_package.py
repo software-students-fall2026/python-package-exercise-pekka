@@ -36,7 +36,7 @@ def test_every_function_is_exported_and_callable():
         (generate_fact, ("cats", "animals"), "cats"),
         (generate_history, ("penguins", "medieval"), "penguins"),
         (generate_statistic, ("students", "campus life"), "students"),
-        (generate_discovery, ("physics", 8), "Fictional discovery:"),
+        (generate_discovery, ("physics", 8), "Scientists discovered that"),
     ],
 )
 def test_public_generator(generator, args, expected_text):
