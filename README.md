@@ -1,42 +1,145 @@
 # PyFakeFacts
 
-A lightweight Python package that generates fictional facts.
+[![Test and Build PyFakeFacts](https://github.com/software-students-fall2026/python-package-exercise-pekka/actions/workflows/python-package.yml/badge.svg)](https://github.com/software-students-fall2026/python-package-exercise-pekka/actions/workflows/python-package.yml)
+
+PyFakeFacts provides a collection of generators for creating fictional trivia, historical events, statistics, and scientific discoveries. 
 
 ## Features
 
-PyFakeFacts will support:
+PyFakeFacts includes four generators:
 
-- Fictional fact generation
-- Fake historical events
-- Absurd statistics
-- Imaginary scientific discoveries
+- **Fake Facts:** Generate fictional facts about any topic.
+- **Fake History:** Create imaginary historical events across different eras.
+- **Fake Statistics:** Produce fake numerical claims and statistics.
+- **Fake Discoveries:** Generate fictional scientific discoveries with adjustable absurdity levels.
+
+## Available Functions
+
+### 1. `generate_fact(topic, category)`
+
+Generates a fictional fact based on a specified topic and category.
+
+```python
+from pyfakefacts import generate_fact
+
+print(generate_fact("cats", "animals"))
+```
+
+### 2. `generate_history(subject, era)`
+
+Generates a fictional historical event involving a subject and a historical era.
+
+Supported eras: `ancient`, `medieval`, and `modern`.
+
+```python
+from pyfakefacts import generate_history
+
+print(generate_history("penguins", "medieval"))
+```
+
+### 3. `generate_statistic(topic, category)`
+
+Generates a fictional statistic using a topic and category.
+
+```python
+from pyfakefacts import generate_statistic
+
+print(generate_statistic("students", "technology"))
+```
+
+### 4. `generate_discovery(field, absurdity)`
+
+Generates a fictional scientific discovery based on a scientific field and an absurdity level.
+
+Supported fields: `physics`, `biology`, and `astronomy`.
+
+The `absurdity` parameter accepts an integer from **1 to 10**, where higher values produce increasingly ridiculous discoveries.
+
+```python
+from pyfakefacts import generate_discovery
+
+print(generate_discovery("physics", 8))
+```
+
+All functions return strings and validate their input arguments.
+
+## Installation
+
+PyFakeFacts requires Python 3.10 or later.
+
+The package will be available through PyPI once published.
+
+**PyPI:** Coming soon.
 
 ## Development Setup
 
-Clone the repository and install dependencies:
+Clone the team repository:
 
-    pipenv sync --dev
+```bash
+git clone https://github.com/software-students-fall2026/python-package-exercise-pekka.git
+cd python-package-exercise-pekka
+```
 
-## Run the Example
+Install the development dependencies using Pipenv:
 
-[`examples/demo.py`](examples/demo.py) calls all four functions with different
-arguments and ends with an example of invalid input. From the repository root:
+```bash
+pipenv sync --dev
+```
 
-    pipenv run python examples/demo.py
+Install the package in editable mode:
+
+```bash
+pipenv run python -m pip install -e .
+```
+
+No additional environment variables, external APIs, or databases are required.
+
+## Running Tests
+
+PyFakeFacts uses `pytest` for automated testing.
+
+Run the complete test suite:
+
+```bash
+pipenv run pytest -v
+```
+
+GitHub Actions automatically runs the tests and builds the package on Python 3.12 and 3.13 for pull requests targeting `main` or `master`.
+
+The workflow status badge at the top of this README displays the latest workflow status for the default branch.
+
+## Building the Package
+
+Build the source distribution and wheel:
+
+```bash
+pipenv run python -m build
+```
+
+The generated package distributions are saved in the `dist/` directory.
+
+Validate the distributions using Twine:
+
+```bash
+pipenv run twine check dist/*
+```
+
+## Example Program
+
+[`examples/demo.py`](examples/demo.py) calls all four generators with different arguments and ends with an example of invalid input.
+
+After completing the development setup, run it from the repository root:
+
+```bash
+pipenv run python examples/demo.py
+```
 
 The output is random, so yours will differ. It looks like this:
 
-    === generate_fact(topic, category) ===
-    Researchers in biology claim that cats invented the weekend.
-    ...
-    === Invalid input ===
-    ValueError: era must be one of: ancient, medieval, modern
-
-## Run Tests
-
-    pipenv run pytest -v
-
-## Build Package
-
-    pipenv run python -m build
-
+```text
+=== generate_fact(topic, category) ===
+Researchers in biology claim that cats invented the weekend.
+...
+=== Invalid input ===
+ValueError: era must be one of: ancient, medieval, modern
+```
