@@ -15,8 +15,8 @@ from pyfakefacts import (
 
 def main():
     print("=== generate_fact(topic, category) ===")
-    print(generate_fact("cats", "biology"))
-    print(generate_fact("NYU students", "sociology"))
+    print(generate_fact("cats", "animals"))
+    print(generate_fact("NYU students", "general"))
 
     print()
     print("=== generate_history(subject, era) ===")
