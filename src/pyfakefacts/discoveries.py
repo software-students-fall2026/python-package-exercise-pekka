@@ -4,7 +4,7 @@ import random
 
 from ._validation import require_text
 
-#types of discoveries and their corresponding absurdity levels
+# Types of discoveries and their corresponding absurdity levels
 DISCOVERIES = {
     "physics": {
         "subjects": ["electrons", "photons", "magnetic fields"],

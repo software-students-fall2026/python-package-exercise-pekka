@@ -35,7 +35,9 @@ def generate_history(subject: str, era: str) -> str:
     """Generate a fictional historical event about a subject in an era.
 
     Args:
-        subject: Nonempty text describing who or what the event is about.
+        subject: Nonempty text describing who or what the event is about,
+            written as a plural noun (for example "pigeons") so the sentence
+            reads correctly.
         era: One of "ancient", "medieval" or "modern". Case-insensitive,
             surrounding whitespace is ignored.
 
