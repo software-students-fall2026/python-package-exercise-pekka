@@ -64,7 +64,7 @@ def generate_fact(topic: str, category: str) -> str:
         raise TypeError("category must be a string")
 
     topic = topic.strip()
-    category = category.strip().lower
+    category = category.strip().lower()
 
     if not topic:
         raise ValueError("topic must not be empty or whitespace-only")
@@ -74,9 +74,9 @@ def generate_fact(topic: str, category: str) -> str:
 
     if category not in _FACT_TEMPLATES:
         supported = ", ".join(sorted(_FACT_TEMPLATES))
-    raise ValueError(
-        f"unsupported category: {category}. Choose from: {supported}"
-    )
+        raise ValueError(
+            f"unsupported category: {category}. Choose from: {supported}"
+        )   
 
     template = random.choice(_FACT_TEMPLATES[category])
 
