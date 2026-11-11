@@ -175,6 +175,32 @@ The generated distributions are saved in `dist/`. Validate them with Twine:
 ```bash
 pipenv run twine check dist/*
 ```
+## Troubleshooting
+
+### Python can't find `pyfakefacts`
+
+If you get `ModuleNotFoundError` while working from a local clone, run this from the repository root:
+
+```bash
+pipenv run python -m pip install -e .
+```
+
+Then run your script with `pipenv run python` so it uses the same environment.
+
+### `generate_fact()` rejects my category
+
+`generate_fact()` accepts `animals`, `technology`, `food`, `space`, and `general`.
+For example, use `generate_fact("cats", "animals")`. To use `biology`,
+call `generate_discovery("biology", 5)`.
+
+### Python can't find `examples/demo.py`
+
+The demo lives in the GitHub repository. From your local clone, open a terminal
+in the `python-package-exercise-pekka` folder and run:
+
+```bash
+pipenv run python examples/demo.py
+```
 
 ## Contributors
 
