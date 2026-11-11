@@ -17,8 +17,12 @@ PyFakeFacts includes four generators:
 
 ### 1. `generate_fact(topic, category)`
 
-Generates a fictional fact based on a specified topic and category.
+Generates a fictional fact about any nonblank topic. Each category
+has five templates, and the function randomly picks one.
 
+**Supported categories:** `animals`, `technology`, `food`, `space`,
+and `general`. Category names are case-insensitive and surrounding
+whitespace is ignored. Unsupported categories raise `ValueError`.
 ```python
 from pyfakefacts import generate_fact
 
@@ -138,7 +142,7 @@ The output is random, so yours will differ. It looks like this:
 
 ```text
 === generate_fact(topic, category) ===
-Researchers in biology claim that cats invented the weekend.
+In animals research, cats secretly organize wildlife elections.
 ...
 === Invalid input ===
 ValueError: era must be one of: ancient, medieval, modern
