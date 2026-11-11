@@ -4,6 +4,8 @@
 
 PyFakeFacts provides a collection of generators for creating fictional trivia, historical events, statistics, and scientific discoveries.
 
+It's a just-for-fun package for developers who want silly, obviously fake text, like for demos, test data, or fun. Each function takes a couple of inputs and gives you back one made-up sentence.
+
 ## Features
 
 PyFakeFacts includes four generators:
@@ -113,7 +115,7 @@ print(discovery)
 
 ### Example program
 
-[`examples/demo.py`](examples/demo.py) imports and calls all four generators, tries each supported history era, discovery field, and the low/high absurdity bounds, and demonstrates an invalid era. Its examples use values accepted by the current implementation.
+[`examples/demo.py`](examples/demo.py) imports and calls all four generators, tries each supported history era, discovery field, and the low/high absurdity bounds, and demonstrates an invalid era.
 
 After completing the development setup, run it from the repository root:
 
@@ -125,7 +127,7 @@ The output is random, so yours will differ.
 
 ## Development Setup
 
-PyFakeFacts itself requires no environment variables, database, starter data, or external API services.
+PyFakeFacts doesn't need any environment variables, database, starter data, outside APIs, or secret config files (like a `.env` file).
 
 Clone the team repository and enter its directory:
 
@@ -139,6 +141,8 @@ Install Pipenv if it is not already installed:
 ```bash
 python -m pip install pipenv
 ```
+
+If you get "command not found" for `python`, try `python3 -m pip install pipenv` instead.
 
 Create/synchronize the Pipenv environment and install development dependencies:
 
@@ -175,6 +179,7 @@ The generated distributions are saved in `dist/`. Validate them with Twine:
 ```bash
 pipenv run twine check dist/*
 ```
+
 ## Troubleshooting
 
 ### Python can't find `pyfakefacts`
@@ -195,8 +200,9 @@ call `generate_discovery("biology", 5)`.
 
 ### Python can't find `examples/demo.py`
 
-The demo lives in the GitHub repository. From your local clone, open a terminal
-in the `python-package-exercise-pekka` folder and run:
+The demo doesn't come with `pip install pyfakefacts`, it's only in the GitHub repo.
+Clone the repo, open a terminal in the `python-package-exercise-pekka` folder,
+and run:
 
 ```bash
 pipenv run python examples/demo.py
@@ -204,7 +210,7 @@ pipenv run python examples/demo.py
 
 ## Contributors
 
-- [Alissa](https://github.com/alissawu)
-- [Pope](https://github.com/pope-cruz)
+- [Alissa Wu](https://github.com/alissawu)
+- [Pope Cruz](https://github.com/pope-cruz)
 - [Khidir Ahmed](https://github.com/khidirahmed)
 - [Adil Inayat](https://github.com/ai2652-png)
