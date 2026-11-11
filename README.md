@@ -15,15 +15,37 @@ PyFakeFacts includes four generators:
 
 ## Installation
 
-PyFakeFacts requires Python 3.10 or later and has no runtime dependencies.
+PyFakeFacts is available on PyPI and requires Python 3.10 or later. It has no runtime dependencies.
 
-**PyPI publication is pending.** The package is not currently available to install from PyPI. The project is named `pyfakefacts` and its current version in `pyproject.toml` is `0.1.0`.
+Install the published package with pip:
+
+```bash
+pip install pyfakefacts
+```
+
+See the [PyFakeFacts 0.1.0 page on PyPI](https://pypi.org/project/pyfakefacts/0.1.0/).
 
 To install the package from a local checkout for development, follow the [Development Setup](#development-setup) instructions below.
 
 ## Using PyFakeFacts
 
 All four functions are importable from `pyfakefacts`. Each returns a string; generated text is selected randomly, so exact output varies.
+
+### Quick start
+
+```python
+from pyfakefacts import (
+    generate_discovery,
+    generate_fact,
+    generate_history,
+    generate_statistic,
+)
+
+print(generate_fact("cats", "animals"))
+print(generate_history("penguins", "medieval"))
+print(generate_statistic("students", "campus life"))
+print(generate_discovery("physics", 8))
+```
 
 ### `generate_fact(topic, category)`
 
