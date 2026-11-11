@@ -1,4 +1,5 @@
-"""PyFakeFacts, a package that generates fake facts"""
+
+"""PyFakeFacts, a package that generates fake facts."""
 
 from .discoveries import generate_discovery
 from .facts import generate_fact
