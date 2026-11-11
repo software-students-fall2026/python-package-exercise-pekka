@@ -74,22 +74,39 @@ def test_category_whitespace_is_trimmed():
     assert "  " not in result
 
 
-def test_internal_spaces_are_preserved():
-    result = generate_fact("New York students", "campus life")
-
-    assert "New York students" in result
-    assert "campus life" in result
-
-
-def test_capitalization_is_preserved():
-    result = generate_fact("NYU Students", "Campus Life")
-
-    assert "NYU Students" in result
-    assert "Campus Life" in result
+@pytest.mark.parametrize(
+    "topic",
+    ["New York students", "NYU Students", "café owners 文化"],
+)
+def test_topic_text_is_preserved(topic):
+    assert topic in generate_fact(topic, "general")
 
 
-def test_unicode_inputs():
-    result = generate_fact("café owners", "文化")
+@pytest.mark.parametrize(
+    "category",
+    ["animals", "technology", "food", "space", "general"],
+)
+def test_supported_categories(category):
+    result = generate_fact("cats", category)
 
-    assert "café owners" in result
-    assert "文化" in result
+    assert "cats" in result
+    assert category in result
+
+
+def test_unsupported_category():
+    with pytest.raises(ValueError, match="unsupported category"):
+        generate_fact("cats", "magic")
+
+
+def test_category_selects_matching_templates(monkeypatch):
+    monkeypatch.setattr(
+        "pyfakefacts.facts.random.choice",
+        lambda templates: templates[0],
+    )
+
+    assert generate_fact("cats", " ANIMALS ") == (
+        "In animals research, cats secretly organize wildlife elections."
+    )
+    assert generate_fact("cats", "space") == (
+        "In space research, cats secretly control the moon's thermostat."
+    )
