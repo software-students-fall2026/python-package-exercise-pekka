@@ -1,6 +1,8 @@
+
 import pytest
 
-from pyfakefacts.facts import generate_fact
+from pyfakefacts.facts import _FACT_TEMPLATES, generate_fact
+
 
 def test_generate_fact_returns_string():
     result = generate_fact("cats", "animals")
@@ -18,7 +20,11 @@ def test_generate_fact_contains_inputs():
     result = generate_fact("cats", "animals")
 
     assert "cats" in result
-    assert "animals" in result
+    assert result in [
+        template.format(topic="cats")
+        for template in _FACT_TEMPLATES["animals"]
+    ]
+
 
 @pytest.mark.parametrize(
     "topic",
@@ -68,7 +74,10 @@ def test_topic_whitespace_is_trimmed():
 def test_category_whitespace_is_trimmed():
     result = generate_fact("cats", "\t animals \n")
 
-    assert "animals" in result
+    assert result in [
+        template.format(topic="cats")
+        for template in _FACT_TEMPLATES["animals"]
+    ]
     assert "\t" not in result
     assert "\n" not in result
     assert "  " not in result
@@ -90,7 +99,10 @@ def test_supported_categories(category):
     result = generate_fact("cats", category)
 
     assert "cats" in result
-    assert category in result
+    assert result in [
+        template.format(topic="cats")
+        for template in _FACT_TEMPLATES[category]
+    ]
 
 
 def test_unsupported_category():
@@ -105,8 +117,27 @@ def test_category_selects_matching_templates(monkeypatch):
     )
 
     assert generate_fact("cats", " ANIMALS ") == (
-        "In animals research, cats secretly organize wildlife elections."
+        "Wildlife researchers claim that cats secretly organize wildlife elections."
     )
     assert generate_fact("cats", "space") == (
-        "In space research, cats secretly control the moon's thermostat."
+        "Astronomers claim that cats secretly control the moon's thermostat."
     )
+
+
+def test_fact_templates_avoid_awkward_category_wording():
+    awkward_phrases = (
+        "animals experts",
+        "animals research",
+        "general experts",
+        "general research",
+    )
+
+    for category, templates in _FACT_TEMPLATES.items():
+        for template in templates:
+            result = template.format(topic="cats")
+
+            assert "cats" in result
+            assert not any(
+                phrase in result.lower()
+                for phrase in awkward_phrases
+            ), f"Awkward wording in category {category}: {result}"
