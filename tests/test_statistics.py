@@ -5,24 +5,14 @@ import pytest
 from pyfakefacts.statistic import generate_statistic
 
 
-def test_generate_statistic_returns_nonempty_string():
+def test_generate_statistic_output():
     result = generate_statistic("students", "campus life")
 
     assert isinstance(result, str)
-    assert len(result.strip()) > 0
-
-
-def test_generate_statistic_contains_inputs():
-    result = generate_statistic("students", "campus life")
-
     assert "students" in result
     assert "campus life" in result
 
-
-def test_generate_statistic_contains_valid_percentage():
-    result = generate_statistic("students", "campus life")
     percentage_match = re.search(r"(\d+)%", result)
-
     assert percentage_match is not None
     assert 1 <= int(percentage_match.group(1)) <= 99
 
@@ -102,13 +92,13 @@ def test_unicode_inputs_are_preserved():
 
 @pytest.mark.parametrize("percentage", [1, 99])
 def test_percentage_boundaries(monkeypatch, percentage):
-    monkeypatch.setattr(
-        "pyfakefacts.statistic.random.randint",
-        lambda lower, upper: percentage,
-    )
+    def pick_percentage(lower, upper):
+        assert (lower, upper) == (1, 99)
+        return percentage
+
+    monkeypatch.setattr("pyfakefacts.statistic.random.randint", pick_percentage)
 
     result = generate_statistic("students", "campus life")
-
     assert f"{percentage}%" in result
 
 
