@@ -126,8 +126,20 @@ pipenv run twine check dist/*
 
 ## Example Program
 
-*Coming soon.*
+[`examples/demo.py`](examples/demo.py) calls all four generators with different arguments and ends with an example of invalid input.
 
-An example Python program demonstrating all four generators will be added to the `examples/` directory.
+After completing the development setup, run it from the repository root:
 
-This section will include instructions for running `examples/demo.py` once implemented.
+```bash
+pipenv run python examples/demo.py
+```
+
+The output is random, so yours will differ. It looks like this:
+
+```text
+=== generate_fact(topic, category) ===
+Researchers in biology claim that cats invented the weekend.
+...
+=== Invalid input ===
+ValueError: era must be one of: ancient, medieval, modern
+```
