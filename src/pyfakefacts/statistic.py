@@ -1,4 +1,8 @@
+"""Generate fictional statistics."""
+
 import random
+
+from ._validation import require_text
 
 
 _STATISTIC_TEMPLATES = (
@@ -11,19 +15,28 @@ _STATISTIC_TEMPLATES = (
 
 
 def generate_statistic(topic: str, category: str) -> str:
-    """Generate an obviously fictional statistic about a topic and category."""
-    if not isinstance(topic, str):
-        raise TypeError("topic must be a string")
-    if not topic.strip():
-        raise ValueError("topic must not be empty or whitespace-only")
-    if not isinstance(category, str):
-        raise TypeError("category must be a string")
-    if not category.strip():
-        raise ValueError("category must not be empty or whitespace-only")
+    """Generate an obviously fictional statistic about a topic and category.
+
+    Args:
+        topic: Nonempty text naming the group, written as a plural noun
+            (for example "students") so the sentence reads correctly.
+        category: Nonempty text naming the thing the statistic is about.
+
+    Returns:
+        A fictional statistic with a random percentage from 1 to 99.
+        Surrounding input whitespace is removed. Internal whitespace and
+        capitalization are preserved.
+
+    Raises:
+        TypeError: If either argument is not a string.
+        ValueError: If either argument is empty after trimming.
+    """
+    topic = require_text(topic, "topic")
+    category = require_text(category, "category")
 
     template = random.choice(_STATISTIC_TEMPLATES)
     return template.format(
         percentage=random.randint(1, 99),
-        topic=topic.strip(),
-        category=category.strip(),
+        topic=topic,
+        category=category,
     )

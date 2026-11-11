@@ -2,6 +2,8 @@
 
 import random
 
+from ._validation import require_text
+
 
 # Inclusive (earliest, latest) year range and label format for each era.
 _ERA_YEARS = {
@@ -33,7 +35,9 @@ def generate_history(subject: str, era: str) -> str:
     """Generate a fictional historical event about a subject in an era.
 
     Args:
-        subject: Nonempty text describing who or what the event is about.
+        subject: Nonempty text describing who or what the event is about,
+            written as a plural noun (for example "pigeons") so the sentence
+            reads correctly.
         era: One of "ancient", "medieval" or "modern". Case-insensitive,
             surrounding whitespace is ignored.
 
@@ -46,17 +50,8 @@ def generate_history(subject: str, era: str) -> str:
         TypeError: If either argument is not a string.
         ValueError: If subject is empty after trimming, or era is not supported.
     """
-    if not isinstance(subject, str):
-        raise TypeError("subject must be a string")
-
-    if not isinstance(era, str):
-        raise TypeError("era must be a string")
-
-    subject = subject.strip()
-    era = era.strip().lower()
-
-    if not subject:
-        raise ValueError("subject must not be empty or whitespace-only")
+    subject = require_text(subject, "subject")
+    era = require_text(era, "era").lower()
 
     if era not in _HISTORY_TEMPLATES:
         supported = ", ".join(sorted(_HISTORY_TEMPLATES))

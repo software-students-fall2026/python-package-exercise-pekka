@@ -99,6 +99,33 @@ def test_empty_subject():
 
 
 def test_unsupported_era():
-    for era in ["future", "", "   ", "jurassic"]:
+    for era in ["future", "jurassic"]:
         with pytest.raises(ValueError, match="era must be one of"):
             generate_history("cats", era)
+
+
+def test_empty_era():
+    for era in ["", "   ", "\n"]:
+        with pytest.raises(ValueError, match="era must not be empty"):
+            generate_history("cats", era)
+
+@pytest.mark.parametrize(
+    "era, bounds, endpoint, expected_year",
+    [
+        ("ancient", (100, 3000), 0, "100 BC"),
+        ("ancient", (100, 3000), 1, "3000 BC"),
+        ("medieval", (500, 1400), 0, "500 AD"),
+        ("medieval", (500, 1400), 1, "1400 AD"),
+        ("modern", (1600, 2000), 0, "1600"),
+        ("modern", (1600, 2000), 1, "2000"),
+    ],
+)
+def test_history_year_boundaries(monkeypatch, era, bounds, endpoint, expected_year):
+    def pick_endpoint(low, high):
+        assert (low, high) == bounds
+        return (low, high)[endpoint]
+
+    monkeypatch.setattr("pyfakefacts.history.random.randint", pick_endpoint)
+
+    result = generate_history("cats", era)
+    assert result.startswith(f"In {expected_year}, ")
