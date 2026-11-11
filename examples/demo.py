@@ -1,8 +1,8 @@
-"""Example program that uses every function in PyFakeFacts.
+"""
+Demo program that uses every function in PyFakeFacts.
 
-Run it from the repository root after installing the package:
-
-    pipenv run python examples/demo.py
+Run after installing the package:
+pipenv run python examples/demo.py
 """
 
 from pyfakefacts import (
