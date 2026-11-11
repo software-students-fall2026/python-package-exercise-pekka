@@ -2,6 +2,8 @@
 
 import random
 
+from ._validation import require_text
+
 #types of discoveries and their corresponding absurdity levels
 DISCOVERIES = {
     "physics": {
@@ -53,7 +55,7 @@ DISCOVERIES = {
 
 
 
-def generate_discovery(field, absurdity):
+def generate_discovery(field: str, absurdity: int) -> str:
     """
     Generate a fictional scientific discovery.
 
@@ -68,10 +70,7 @@ def generate_discovery(field, absurdity):
         TypeError: If arguments have incorrect types.
         ValueError: If arguments have unsupported values.
     """
-    if not isinstance(field, str):
-        raise TypeError("Field must be a string.")
-
-    field = field.strip().lower()
+    field = require_text(field, "field").lower()
 
     if field not in DISCOVERIES:
         raise ValueError("Unsupported scientific field.")

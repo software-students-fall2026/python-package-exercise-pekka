@@ -2,6 +2,8 @@
 
 import random
 
+from ._validation import require_text
+
 
 _FACT_TEMPLATES = {
     "animals": (
@@ -57,20 +59,8 @@ def generate_fact(topic: str, category: str) -> str:
         TypeError: If either argument is not a string.
         ValueError: If either argument is empty after trimming.
     """
-    if not isinstance(topic, str):
-        raise TypeError("topic must be a string")
-
-    if not isinstance(category, str):
-        raise TypeError("category must be a string")
-
-    topic = topic.strip()
-    category = category.strip().lower()
-
-    if not topic:
-        raise ValueError("topic must not be empty or whitespace-only")
-
-    if not category:
-        raise ValueError("category must not be empty or whitespace-only")
+    topic = require_text(topic, "topic")
+    category = require_text(category, "category").lower()
 
     if category not in _FACT_TEMPLATES:
         supported = ", ".join(sorted(_FACT_TEMPLATES))

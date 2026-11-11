@@ -99,6 +99,12 @@ def test_empty_subject():
 
 
 def test_unsupported_era():
-    for era in ["future", "", "   ", "jurassic"]:
+    for era in ["future", "jurassic"]:
         with pytest.raises(ValueError, match="era must be one of"):
+            generate_history("cats", era)
+
+
+def test_empty_era():
+    for era in ["", "   ", "\n"]:
+        with pytest.raises(ValueError, match="era must not be empty"):
             generate_history("cats", era)
