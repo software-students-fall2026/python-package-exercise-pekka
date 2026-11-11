@@ -16,7 +16,21 @@ PyFakeFacts will support:
 Clone the repository and install dependencies:
 
     pipenv sync --dev
-    pipenv run pip install -e 
+
+## Run the Example
+
+[`examples/demo.py`](examples/demo.py) calls all four functions with different
+arguments and ends with an example of invalid input. From the repository root:
+
+    pipenv run python examples/demo.py
+
+The output is random, so yours will differ. It looks like this:
+
+    === generate_fact(topic, category) ===
+    Researchers in biology claim that cats invented the weekend.
+    ...
+    === Invalid input ===
+    ValueError: era must be one of: ancient, medieval, modern
 
 ## Run Tests
 
