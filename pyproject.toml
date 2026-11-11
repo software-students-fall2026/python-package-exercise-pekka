@@ -1,15 +1,25 @@
-
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyfakefacts"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python package that generates funny, fictional facts."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+keywords = ["fake", "facts", "random", "fun", "generator"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/software-students-fall2026/python-package-exercise-pekka"
+Issues = "https://github.com/software-students-fall2026/python-package-exercise-pekka/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
