@@ -50,7 +50,7 @@ def test_invalid_category_type(category):
     ["", " ", "   ", "\t", "\n"],
 )
 def test_empty_topic(topic):
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="topic must not be empty"):
         generate_statistic(topic, "campus life")
 
 
@@ -59,7 +59,7 @@ def test_empty_topic(topic):
     ["", " ", "   ", "\t", "\n"],
 )
 def test_empty_category(category):
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="category must not be empty"):
         generate_statistic("students", category)
 
 

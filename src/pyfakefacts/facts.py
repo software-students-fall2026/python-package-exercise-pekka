@@ -48,7 +48,8 @@ def generate_fact(topic: str, category: str) -> str:
     """Generate a fictional fact containing a topic and category.
 
     Args:
-        topic: Nonempty text describing the subject.
+        topic: Nonempty text describing the subject, written as a plural
+            noun (for example "cats") so the sentence reads correctly.
         category: One of animals, technology, food, space, or general. Case-insensitive.
 
     Returns:
@@ -66,7 +67,7 @@ def generate_fact(topic: str, category: str) -> str:
         supported = ", ".join(sorted(_FACT_TEMPLATES))
         raise ValueError(
             f"unsupported category: {category}. Choose from: {supported}"
-        )   
+        )
 
     template = random.choice(_FACT_TEMPLATES[category])
 

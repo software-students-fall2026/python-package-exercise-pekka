@@ -51,7 +51,7 @@ print(generate_discovery("physics", 8))
 
 Generates a fictional fact about a topic.
 
-- `topic`: A nonempty string. Leading and trailing whitespace is removed; internal whitespace and capitalization are preserved.
+- `topic`: A nonempty string, best written as a plural noun such as `"cats"` so the sentence reads correctly. Leading and trailing whitespace is removed; internal whitespace and capitalization are preserved.
 - `category`: A nonempty string. Leading and trailing whitespace is removed and the value is converted to lowercase. Supported categories are `animals`, `technology`, `food`, `space`, and `general`.
 - **Returns:** A fictional fact string, randomly selected from five templates for the category.
 - **Errors:** Raises `TypeError` if either argument is not a string. Raises `ValueError` if either value is blank after trimming or if the category is unsupported.
@@ -67,7 +67,7 @@ print(fact)
 
 Generates a fictional historical event about a subject and an era.
 
-- `subject`: A nonempty string. Leading and trailing whitespace is removed; internal whitespace and capitalization are preserved.
+- `subject`: A nonempty string, best written as a plural noun such as `"pigeons"` so the sentence reads correctly. Leading and trailing whitespace is removed; internal whitespace and capitalization are preserved.
 - `era`: A nonempty string. Leading and trailing whitespace is removed and the value is converted to lowercase. Supported eras are `ancient`, `medieval`, and `modern`.
 - **Returns:** A fictional historical-event string with a randomly selected year and template. Ancient years are labeled `BC` (100–3000 BC); medieval years are labeled `AD` (500–1400 AD); modern years have no era suffix (1600–2000).
 - **Errors:** Raises `TypeError` if either argument is not a string. Raises `ValueError` if the subject is blank after trimming or the era is unsupported.
@@ -83,7 +83,7 @@ print(event)
 
 Generates an obviously fictional statistic about a topic and category.
 
-- `topic`: A nonempty string. Leading and trailing whitespace is removed; internal whitespace and capitalization are preserved.
+- `topic`: A nonempty string, best written as a plural noun such as `"students"` so the sentence reads correctly. Leading and trailing whitespace is removed; internal whitespace and capitalization are preserved.
 - `category`: A nonempty string. Leading and trailing whitespace is removed; internal whitespace and capitalization are preserved. Any nonblank string is accepted; there is no category allowlist.
 - **Returns:** A fictional statistic string with a randomly selected template and a random percentage from 1 through 99.
 - **Errors:** Raises `TypeError` if either argument is not a string. Raises `ValueError` if either value is blank after trimming.
