@@ -23,7 +23,7 @@ Install the published package with pip:
 pip install pyfakefacts
 ```
 
-See the [PyFakeFacts 0.1.0 page on PyPI](https://pypi.org/project/pyfakefacts/0.1.0/).
+See [PyFakeFacts on PyPI](https://pypi.org/project/pyfakefacts/).
 
 To install the package from a local checkout for development, follow the [Development Setup](#development-setup) instructions below.
 
